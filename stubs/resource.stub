@@ -1,0 +1,43 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ NAMESPACE }};
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+/**
+ * {{ CLASS_NAME }} API Resource
+ *
+ * Transforms domain entities or Eloquent models into JSON responses.
+ * This class is the presentation contract — change only the shape here,
+ * never the domain model or database schema.
+ *
+ * @domain {{ DOMAIN }}
+ */
+final class {{ CLASS_NAME }} extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @return array<string, mixed>
+     */
+    public function toArray(Request $request): array
+    {
+        return [
+            'id'         => $this->id,
+            'created_at' => $this->created_at?->toISOString(),
+            'updated_at' => $this->updated_at?->toISOString(),
+            // TODO: Add domain-specific fields here
+        ];
+    }
+
+    /**
+     * Customize the outgoing response for the resource.
+     */
+    public function withResponse(Request $request, \Illuminate\Http\JsonResponse $response): void
+    {
+        $response->header('X-Domain', '{{ DOMAIN }}');
+    }
+}

@@ -1,0 +1,50 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ NAMESPACE }};
+
+/**
+ * {{ CLASS_NAME }} Enum
+ *
+ * PHP 8.1+ backed enum representing a fixed set of domain values.
+ * Enums are value objects by nature — use them instead of magic strings.
+ *
+ * @domain {{ DOMAIN }}
+ */
+enum {{ CLASS_NAME }}: string
+{
+    case ACTIVE   = 'active';
+    case INACTIVE = 'inactive';
+
+    // ─── Derived Behaviour ────────────────────────────────────────────────
+
+    public function label(): string
+    {
+        return match ($this) {
+            self::ACTIVE   => 'Active',
+            self::INACTIVE => 'Inactive',
+        };
+    }
+
+    public function isActive(): bool
+    {
+        return $this === self::ACTIVE;
+    }
+
+    /**
+     * @return array<int, self>
+     */
+    public static function active(): array
+    {
+        return [self::ACTIVE];
+    }
+
+    /**
+     * Try to create from a value, returning null on invalid input.
+     */
+    public static function tryFromValue(string $value): ?self
+    {
+        return self::tryFrom($value);
+    }
+}

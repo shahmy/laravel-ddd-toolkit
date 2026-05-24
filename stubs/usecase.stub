@@ -1,0 +1,47 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ NAMESPACE }};
+
+/**
+ * {{ CLASS_NAME }} Use Case
+ *
+ * Implements a single application business rule following Clean Architecture.
+ *
+ * A Use Case:
+ *   - Receives a Request DTO
+ *   - Orchestrates domain objects and services to fulfill the business rule
+ *   - Returns a Response DTO or raises a domain exception
+ *   - Has NO knowledge of HTTP, databases, or frameworks
+ *
+ * @domain {{ DOMAIN }}
+ */
+final class {{ CLASS_NAME }}
+{
+    public function __construct(
+        // Inject domain repository interfaces and domain services
+        // Example:
+        // private readonly ProductRepositoryInterface $productRepository,
+        // private readonly PricingService $pricingService,
+    ) {}
+
+    /**
+     * Execute the use case.
+     *
+     * @throws \DomainException When a business rule is violated
+     * @throws \InvalidArgumentException When input is invalid
+     */
+    public function execute(mixed $request): mixed
+    {
+        // Typical use case flow:
+        // 1. Validate the incoming request DTO
+        // 2. Load the relevant aggregate root(s) from the repository
+        // 3. Call domain methods / domain services
+        // 4. Save changes back through the repository
+        // 5. Dispatch any domain events
+        // 6. Return a response DTO
+
+        throw new \RuntimeException('{{ CLASS_NAME }}::execute() not yet implemented.');
+    }
+}

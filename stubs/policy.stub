@@ -1,0 +1,76 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ NAMESPACE }};
+
+use Illuminate\Auth\Access\HandlesAuthorization;
+
+/**
+ * {{ CLASS_NAME }}
+ *
+ * Laravel Policy for authorizing {{ DOMAIN }} domain actions.
+ * Register this policy in {{ DOMAIN }}ServiceProvider or AuthServiceProvider.
+ *
+ * @domain {{ DOMAIN }}
+ */
+final class {{ CLASS_NAME }}
+{
+    use HandlesAuthorization;
+
+    /**
+     * Determine whether the user can view any models.
+     */
+    public function viewAny(mixed $user): bool
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can view the model.
+     */
+    public function view(mixed $user, mixed $model): bool
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can create models.
+     */
+    public function create(mixed $user): bool
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can update the model.
+     */
+    public function update(mixed $user, mixed $model): bool
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can delete the model.
+     */
+    public function delete(mixed $user, mixed $model): bool
+    {
+        return false;
+    }
+
+    /**
+     * Determine whether the user can restore the model.
+     */
+    public function restore(mixed $user, mixed $model): bool
+    {
+        return false;
+    }
+
+    /**
+     * Determine whether the user can permanently delete the model.
+     */
+    public function forceDelete(mixed $user, mixed $model): bool
+    {
+        return false;
+    }
+}

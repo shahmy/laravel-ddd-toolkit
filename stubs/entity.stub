@@ -1,0 +1,58 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ NAMESPACE }};
+
+/**
+ * {{ CLASS_NAME }} Entity
+ *
+ * Entities have identity — two {{ CLASS_NAME }} instances with the same ID
+ * are considered equal regardless of their other attributes.
+ *
+ * @domain {{ DOMAIN }}
+ */
+final class {{ CLASS_NAME }}
+{
+    public function __construct(
+        private readonly string $id,
+        // TODO: Add your entity properties here
+    ) {}
+
+    // ─── Identity ─────────────────────────────────────────────────────────
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    /**
+     * Value equality based on ID — entities are identical when their IDs match.
+     */
+    public function equals(self $other): bool
+    {
+        return $this->id === $other->id;
+    }
+
+    // ─── Factory ──────────────────────────────────────────────────────────
+
+    public static function create(string $id): self
+    {
+        // TODO: Add validation or domain event dispatch here
+        return new self($id);
+    }
+
+    public static function reconstitute(string $id): self
+    {
+        return new self($id);
+    }
+
+    // ─── Serialization ────────────────────────────────────────────────────
+
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->id,
+        ];
+    }
+}

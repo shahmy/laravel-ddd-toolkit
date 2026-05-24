@@ -1,0 +1,59 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ NAMESPACE }};
+
+use Illuminate\Foundation\Http\FormRequest;
+
+/**
+ * {{ CLASS_NAME }} Form Request
+ *
+ * Validates and authorizes the HTTP input for the {{ CLASS_NAME }} operation.
+ * After validation, cast this to a DTO before passing to the application layer.
+ *
+ * @domain {{ DOMAIN }}
+ */
+final class {{ CLASS_NAME }} extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, array<int, string>|string>
+     */
+    public function rules(): array
+    {
+        return [
+            // TODO: Add validation rules
+            // 'name' => ['required', 'string', 'max:255'],
+        ];
+    }
+
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [];
+    }
+
+    /**
+     * Get custom attributes for validator error messages.
+     *
+     * @return array<string, string>
+     */
+    public function attributes(): array
+    {
+        return [];
+    }
+}

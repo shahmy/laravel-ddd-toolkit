@@ -1,0 +1,57 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ NAMESPACE }};
+
+/**
+ * {{ CLASS_NAME }} Data Transfer Object
+ *
+ * DTOs are immutable data carriers that move data between application layers.
+ * They have no behaviour — only data and factory methods.
+ *
+ * Using PHP 8.2+ readonly classes ensures true immutability at the language level.
+ *
+ * @domain {{ DOMAIN }}
+ */
+final readonly class {{ CLASS_NAME }}
+{
+    public function __construct(
+        // TODO: Add your DTO properties here
+        public readonly string $id,
+    ) {}
+
+    // ─── Factory Methods ──────────────────────────────────────────────────
+
+    /**
+     * Create from a raw array (e.g., validated request data).
+     *
+     * @param array<string, mixed> $data
+     */
+    public static function fromArray(array $data): self
+    {
+        return new self(
+            id: (string) ($data['id'] ?? ''),
+        );
+    }
+
+    /**
+     * Create from an HTTP Request (Laravel integration point).
+     */
+    public static function fromRequest(\Illuminate\Http\Request $request): self
+    {
+        return self::fromArray($request->validated());
+    }
+
+    // ─── Serialization ────────────────────────────────────────────────────
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->id,
+        ];
+    }
+}

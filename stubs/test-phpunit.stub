@@ -1,0 +1,57 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ NAMESPACE }};
+
+use PHPUnit\Framework\TestCase;
+
+/**
+ * {{ CLASS_NAME }}
+ *
+ * PHPUnit tests for {{ DOMAIN }} domain.
+ *
+ * @covers \{{ TESTED_CLASS }}
+ */
+final class {{ CLASS_NAME }} extends TestCase
+{
+    protected function setUp(): void
+    {
+        parent::setUp();
+        // Set up shared fixtures here
+    }
+
+    /** @test */
+    public function it_demonstrates_the_happy_path(): void
+    {
+        // Arrange
+        // TODO: Set up the subject under test
+
+        // Act
+        // TODO: Call the method or action
+
+        // Assert
+        $this->assertTrue(true);
+    }
+
+    /** @test */
+    public function it_handles_edge_cases_correctly(): void
+    {
+        // Arrange
+
+        // Act
+
+        // Assert
+        $this->assertTrue(true);
+    }
+
+    /** @test */
+    public function it_raises_a_domain_exception_when_rules_are_violated(): void
+    {
+        // Arrange
+
+        // Act & Assert
+        $this->expectException(\DomainException::class);
+        throw new \DomainException('test');
+    }
+}

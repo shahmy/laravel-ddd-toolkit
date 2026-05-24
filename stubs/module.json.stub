@@ -1,0 +1,10 @@
+{
+  "name": "{{ DOMAIN }}",
+  "namespace": "{{ NAMESPACE }}",
+  "version": "1.0.0",
+  "description": "{{ DOMAIN }} bounded context",
+  "layers": ["Application", "Domain", "Infrastructure", "Presentation", "Tests"],
+  "created_at": "{{ CREATED_AT }}",
+  "ddd_toolkit_version": "1.0.0",
+  "generator": "laravel-ddd-architect"
+}

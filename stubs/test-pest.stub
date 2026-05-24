@@ -1,0 +1,44 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * {{ CLASS_NAME }}
+ *
+ * Pest tests for {{ DOMAIN }} domain.
+ */
+
+describe('{{ CLASS_NAME }}', function (): void {
+
+    beforeEach(function (): void {
+        // Set up shared fixtures here
+    });
+
+    it('should demonstrate the happy path', function (): void {
+        // Arrange
+        // TODO: Set up the subject under test
+
+        // Act
+        // TODO: Call the method or action
+
+        // Assert
+        expect(true)->toBeTrue();
+    });
+
+    it('should handle edge cases correctly', function (): void {
+        // Arrange
+
+        // Act
+
+        // Assert
+        expect(true)->toBeTrue();
+    });
+
+    it('should raise a domain exception when rules are violated', function (): void {
+        // Arrange
+
+        // Act & Assert
+        expect(fn () => throw new \DomainException('test'))->toThrow(\DomainException::class);
+    });
+
+});

@@ -1,0 +1,45 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ NAMESPACE }};
+
+/**
+ * {{ CLASS_NAME }} Repository Interface
+ *
+ * Defines the contract for persisting and retrieving domain entities.
+ * The domain layer depends ONLY on this interface — never on Eloquent or any ORM.
+ * Implementations live in Infrastructure/Persistence/Repositories/.
+ *
+ * @domain {{ DOMAIN }}
+ */
+interface {{ CLASS_NAME }}Interface
+{
+    /**
+     * Find an entity by its unique identifier.
+     * Returns null if not found — never throws.
+     */
+    public function findById(string $id): ?object;
+
+    /**
+     * Return all entities. Use with caution on large datasets — prefer query objects.
+     *
+     * @return array<int, object>
+     */
+    public function findAll(): array;
+
+    /**
+     * Persist a new or updated entity.
+     */
+    public function save(object $entity): void;
+
+    /**
+     * Remove an entity by its identifier.
+     */
+    public function delete(string $id): void;
+
+    /**
+     * Return true if an entity with the given ID exists.
+     */
+    public function exists(string $id): bool;
+}

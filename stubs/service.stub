@@ -1,0 +1,27 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ NAMESPACE }};
+
+/**
+ * {{ CLASS_NAME }} Domain Service
+ *
+ * Domain services encapsulate domain logic that doesn't naturally belong to a
+ * single entity or value object. They are stateless and operate purely on
+ * domain objects — no infrastructure dependencies.
+ *
+ * If you need to call a database or external service, that belongs in the
+ * Infrastructure layer (inject it via an interface).
+ *
+ * @domain {{ DOMAIN }}
+ */
+final class {{ CLASS_NAME }}
+{
+    public function __construct(
+        // Inject domain repository interfaces and other domain services here
+        // Example: private readonly ProductRepositoryInterface $productRepository
+    ) {}
+
+    // TODO: Add domain service methods here
+}

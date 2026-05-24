@@ -1,0 +1,54 @@
+# ── Composer ──────────────────────────────────────────────────────────────────
+vendor/
+composer.lock
+
+# ── PHPUnit / Pest ────────────────────────────────────────────────────────────
+.phpunit.result.cache
+.phpunit.cache/
+.pest/
+coverage/
+coverage-html/
+coverage.xml
+clover.xml
+junit.xml
+
+# ── Laravel Pint ──────────────────────────────────────────────────────────────
+.pint.cache
+
+# ── PHP-CS-Fixer ──────────────────────────────────────────────────────────────
+.php-cs-fixer.cache
+.php_cs.cache
+
+# ── Environment ───────────────────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+
+# ── IDE / editor ──────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+nbproject/
+.project
+.buildpath
+
+# ── OS artefacts ──────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+Desktop.ini
+
+# ── Logs ──────────────────────────────────────────────────────────────────────
+*.log
+logs/
+
+# ── Temp / build artefacts ────────────────────────────────────────────────────
+/tmp/
+*.tmp
+*.bak
+*.swp

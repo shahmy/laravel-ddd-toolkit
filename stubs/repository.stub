@@ -1,0 +1,71 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ NAMESPACE }};
+
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * Eloquent{{ CLASS_NAME }} Repository
+ *
+ * Concrete Eloquent implementation of the {{ CLASS_NAME }} repository contract.
+ * This class lives in Infrastructure — it is allowed to depend on Laravel/Eloquent.
+ *
+ * @domain {{ DOMAIN }}
+ */
+final class Eloquent{{ CLASS_NAME }} implements {{ CLASS_NAME }}Interface
+{
+    public function __construct(
+        private readonly Model $model
+    ) {}
+
+    public function findById(string $id): ?object
+    {
+        $record = $this->model->newQuery()->find($id);
+        return $record ? $this->toEntity($record) : null;
+    }
+
+    /**
+     * @return array<int, object>
+     */
+    public function findAll(): array
+    {
+        return $this->model->newQuery()
+            ->get()
+            ->map(fn(Model $record) => $this->toEntity($record))
+            ->all();
+    }
+
+    public function save(object $entity): void
+    {
+        $this->model->newQuery()->updateOrCreate(
+            ['id' => $entity->getId()],
+            $this->toArray($entity)
+        );
+    }
+
+    public function delete(string $id): void
+    {
+        $this->model->newQuery()->where('id', $id)->delete();
+    }
+
+    public function exists(string $id): bool
+    {
+        return $this->model->newQuery()->where('id', $id)->exists();
+    }
+
+    // ─── Mapping ──────────────────────────────────────────────────────────
+
+    private function toEntity(Model $record): object
+    {
+        // TODO: Map Eloquent model to domain entity
+        throw new \RuntimeException('toEntity() not yet implemented.');
+    }
+
+    private function toArray(object $entity): array
+    {
+        // TODO: Map domain entity to persistence array
+        return [];
+    }
+}

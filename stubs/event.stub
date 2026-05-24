@@ -1,0 +1,59 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ NAMESPACE }};
+
+/**
+ * {{ CLASS_NAME }} Domain Event
+ *
+ * Domain Events represent something significant that happened in the domain.
+ * They are immutable records of past facts — name them in the past tense.
+ *
+ * Guidelines:
+ *   - Name in past tense (e.g. OrderPlaced, ProductCreated, PaymentFailed)
+ *   - Carry all context needed to react to the event
+ *   - Raise from within the aggregate that owns the state change
+ *   - Never raise events for read operations
+ *
+ * @domain {{ DOMAIN }}
+ */
+final readonly class {{ CLASS_NAME }}
+{
+    public readonly \DateTimeImmutable $occurredAt;
+
+    public function __construct(
+        /** The aggregate root ID that produced this event */
+        public readonly string $aggregateId,
+        // TODO: Add event-specific payload properties here
+        // Example: public readonly string $productName,
+    ) {
+        $this->occurredAt = new \DateTimeImmutable();
+    }
+
+    // ─── Metadata ─────────────────────────────────────────────────────────
+
+    public function getEventName(): string
+    {
+        return static::class;
+    }
+
+    // ─── Serialization ────────────────────────────────────────────────────
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        return [
+            'event'       => $this->getEventName(),
+            'aggregateId' => $this->aggregateId,
+            'occurredAt'  => $this->occurredAt->format(\DateTimeInterface::ATOM),
+        ];
+    }
+
+    public function toJson(): string
+    {
+        return json_encode($this->toArray(), JSON_THROW_ON_ERROR);
+    }
+}

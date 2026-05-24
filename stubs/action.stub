@@ -1,0 +1,42 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ NAMESPACE }};
+
+/**
+ * {{ CLASS_NAME }} Action
+ *
+ * Actions follow the Single Responsibility Principle — each action does exactly
+ * one thing. They are the primary building blocks of the application layer.
+ *
+ * Actions differ from Use Cases in that they are composable: a Use Case can
+ * orchestrate multiple Actions. Actions differ from Domain Services in that
+ * they may coordinate infrastructure (repositories, events, queues).
+ *
+ * @domain {{ DOMAIN }}
+ */
+final class {{ CLASS_NAME }}
+{
+    public function __construct(
+        // Inject dependencies via constructor
+        // Use interfaces, not concrete classes
+    ) {}
+
+    /**
+     * Execute the action.
+     *
+     * @throws \DomainException When a business rule is violated
+     */
+    public function execute(mixed $input): mixed
+    {
+        // TODO: Implement action logic
+        // 1. Validate input (domain rules)
+        // 2. Load relevant entities
+        // 3. Execute domain logic
+        // 4. Persist changes via repository
+        // 5. Dispatch domain events
+        // 6. Return result
+        throw new \RuntimeException('{{ CLASS_NAME }}::execute() not yet implemented.');
+    }
+}

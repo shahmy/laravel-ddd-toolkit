@@ -1,0 +1,80 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ NAMESPACE }};
+
+use InvalidArgumentException;
+
+/**
+ * {{ CLASS_NAME }} Value Object
+ *
+ * Value Objects are immutable, and their equality is based on their value,
+ * not their identity. Two {{ CLASS_NAME }} instances with the same value are equal.
+ *
+ * Guidelines:
+ *   - Make all properties readonly
+ *   - Implement an equals() method based on value comparison
+ *   - Validate in the constructor — throw on invalid input
+ *   - Provide a meaningful __toString()
+ *
+ * @domain {{ DOMAIN }}
+ */
+final readonly class {{ CLASS_NAME }}
+{
+    public function __construct(
+        private readonly mixed $value
+    ) {
+        $this->validate($value);
+    }
+
+    // ─── Value Access ──────────────────────────────────────────────────────
+
+    public function getValue(): mixed
+    {
+        return $this->value;
+    }
+
+    // ─── Equality ─────────────────────────────────────────────────────────
+
+    public function equals(self $other): bool
+    {
+        return $this->value === $other->value;
+    }
+
+    // ─── Operations ───────────────────────────────────────────────────────
+
+    // TODO: Add immutable transformation methods here
+    // Example:
+    // public function withValue(mixed $newValue): self
+    // {
+    //     return new self($newValue);
+    // }
+
+    // ─── String Representation ────────────────────────────────────────────
+
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
+
+    // ─── Factory ──────────────────────────────────────────────────────────
+
+    public static function from(mixed $value): self
+    {
+        return new self($value);
+    }
+
+    // ─── Validation ───────────────────────────────────────────────────────
+
+    private function validate(mixed $value): void
+    {
+        if ($value === null || $value === '') {
+            throw new InvalidArgumentException(
+                sprintf('%s cannot be empty or null.', self::class)
+            );
+        }
+
+        // TODO: Add business-rule validation here
+    }
+}
