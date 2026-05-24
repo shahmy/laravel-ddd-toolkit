@@ -31,6 +31,10 @@ final class DddRepositoryCommand extends Command
         $force   = (bool) $this->option('force');
         $dryRun  = (bool) $this->option('dry-run');
 
+        // Strip trailing "Repository" suffix — the command appends it automatically.
+        // Handles: ddd:repository Merchant MerchantRepository → treated as "Merchant"
+        $name = (string) preg_replace('/Repository$/i', '', $name);
+
         if (! $this->validateNames($domain, $name)) {
             return self::FAILURE;
         }
