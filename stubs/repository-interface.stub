@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace {{ NAMESPACE }};
 
 /**
- * {{ CLASS_NAME }} Repository Interface
+ * {{ CLASS_NAME }}
  *
- * Defines the contract for persisting and retrieving domain entities.
+ * Defines the contract for persisting and retrieving {{ DOMAIN }} entities.
  * The domain layer depends ONLY on this interface — never on Eloquent or any ORM.
  * Implementations live in Infrastructure/Persistence/Repositories/.
  *
  * @domain {{ DOMAIN }}
  */
-interface {{ CLASS_NAME }}Interface
+interface {{ CLASS_NAME }}
 {
     /**
      * Find an entity by its unique identifier.

@@ -46,7 +46,11 @@ final class NamespaceGenerator
      */
     public function forClass(string $domain, string ...$layers): string
     {
-        $parts = array_filter([$this->baseNamespace, $domain, ...$layers], fn($p) => $p !== '');
+        $normalized = array_map(
+            fn (string $p) => str_replace('/', '\\', $p),
+            [$this->baseNamespace, $domain, ...$layers],
+        );
+        $parts = array_filter($normalized, fn ($p) => $p !== '');
         return implode('\\', $parts);
     }
 

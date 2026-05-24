@@ -5,16 +5,17 @@ declare(strict_types=1);
 namespace {{ NAMESPACE }};
 
 use Illuminate\Database\Eloquent\Model;
+use {{ INTERFACE_NAMESPACE }}\{{ CLASS_NAME }}RepositoryInterface;
 
 /**
- * Eloquent{{ CLASS_NAME }} Repository
+ * Eloquent{{ CLASS_NAME }}Repository
  *
- * Concrete Eloquent implementation of the {{ CLASS_NAME }} repository contract.
+ * Concrete Eloquent implementation of {{ CLASS_NAME }}RepositoryInterface.
  * This class lives in Infrastructure — it is allowed to depend on Laravel/Eloquent.
  *
  * @domain {{ DOMAIN }}
  */
-final class Eloquent{{ CLASS_NAME }} implements {{ CLASS_NAME }}Interface
+final class Eloquent{{ CLASS_NAME }}Repository implements {{ CLASS_NAME }}RepositoryInterface
 {
     public function __construct(
         private readonly Model $model
@@ -33,7 +34,7 @@ final class Eloquent{{ CLASS_NAME }} implements {{ CLASS_NAME }}Interface
     {
         return $this->model->newQuery()
             ->get()
-            ->map(fn(Model $record) => $this->toEntity($record))
+            ->map(fn (Model $record) => $this->toEntity($record))
             ->all();
     }
 
@@ -59,13 +60,17 @@ final class Eloquent{{ CLASS_NAME }} implements {{ CLASS_NAME }}Interface
 
     private function toEntity(Model $record): object
     {
-        // TODO: Map Eloquent model to domain entity
+        // TODO: Map Eloquent model fields to your domain entity
+        // Example: return new {{ CLASS_NAME }}Entity($record->id, $record->name);
         throw new \RuntimeException('toEntity() not yet implemented.');
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     private function toArray(object $entity): array
     {
-        // TODO: Map domain entity to persistence array
+        // TODO: Map domain entity properties to persistence array
         return [];
     }
 }
