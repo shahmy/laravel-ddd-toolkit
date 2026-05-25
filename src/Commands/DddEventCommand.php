@@ -29,7 +29,7 @@ final class DddEventCommand extends Command
 
         try {
             $path = $generator->generate('event', $domain, 'Domain', 'Events', $name, [], (bool) $this->option('force'), (bool) $this->option('dry-run'));
-            $relative = str_replace(base_path() . '/', '', $path);
+            $relative = str_replace(base_path() . DIRECTORY_SEPARATOR, '', $path);
             $this->line((bool) $this->option('dry-run') ? "<fg=cyan>[dry-run]</> Would create: {$relative}" : "<fg=green>✓</> Created: {$relative}");
             if (! (bool) $this->option('dry-run')) {
                 $this->info("✅ Domain Event '{$name}' created in {$domain}/Domain/Events/");

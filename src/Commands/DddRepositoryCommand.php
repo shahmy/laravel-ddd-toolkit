@@ -110,7 +110,7 @@ final class DddRepositoryCommand extends Command
 
     private function printResult(string $path, bool $dryRun, string $label): void
     {
-        $relative = str_replace(base_path() . '/', '', $path);
+        $relative = str_replace(base_path() . DIRECTORY_SEPARATOR, '', $path);
         $prefix   = $dryRun ? '<fg=cyan>[dry-run]</> Would create' : '<fg=green>✓</> Created';
         $this->line("  {$prefix} {$label}: {$relative}");
     }

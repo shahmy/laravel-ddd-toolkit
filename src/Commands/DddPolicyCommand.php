@@ -29,11 +29,11 @@ final class DddPolicyCommand extends Command
         }
 
         try {
-            $path = $generator->generate('policy', $domain, 'Domain', '', $className, [], (bool) $this->option('force'), (bool) $this->option('dry-run'));
-            $relative = str_replace(base_path() . '/', '', $path);
+            $path = $generator->generate('policy', $domain, 'Domain', 'Policies', $className, [], (bool) $this->option('force'), (bool) $this->option('dry-run'));
+            $relative = str_replace(base_path() . DIRECTORY_SEPARATOR, '', $path);
             $this->line((bool) $this->option('dry-run') ? "<fg=cyan>[dry-run]</> Would create: {$relative}" : "<fg=green>✓</> Created: {$relative}");
             if (! (bool) $this->option('dry-run')) {
-                $this->info("✅ Policy '{$className}' created in {$domain}/Domain/");
+                $this->info("✅ Policy '{$className}' created in {$domain}/Domain/Policies/");
             }
         } catch (\Throwable $e) {
             $this->error($e->getMessage());

@@ -30,7 +30,7 @@ final class DddRequestCommand extends Command
 
         try {
             $path = $generator->generate('request', $domain, 'Presentation/API', 'Requests', $className, [], (bool) $this->option('force'), (bool) $this->option('dry-run'));
-            $relative = str_replace(base_path() . '/', '', $path);
+            $relative = str_replace(base_path() . DIRECTORY_SEPARATOR, '', $path);
             $this->line((bool) $this->option('dry-run') ? "<fg=cyan>[dry-run]</> Would create: {$relative}" : "<fg=green>✓</> Created: {$relative}");
             if (! (bool) $this->option('dry-run')) {
                 $this->info("✅ Request '{$className}' created in {$domain}/Presentation/API/Requests/");

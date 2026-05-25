@@ -53,7 +53,7 @@ final class DddTestCommand extends Command
                 $dryRun,
             );
 
-            $relative = str_replace(base_path() . '/', '', $path);
+            $relative = str_replace(base_path() . DIRECTORY_SEPARATOR, '', $path);
             $this->line($dryRun ? "<fg=cyan>[dry-run]</> Would create: {$relative}" : "<fg=green>✓</> Created: {$relative}");
 
             if (! $dryRun) {

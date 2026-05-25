@@ -57,7 +57,7 @@ final class DddEntityCommand extends Command
 
     private function outputResult(string $path, bool $dryRun, string $type, string $domain, string $name): void
     {
-        $relative = str_replace(base_path() . '/', '', $path);
+        $relative = str_replace(base_path() . DIRECTORY_SEPARATOR, '', $path);
 
         if ($dryRun) {
             $this->line("<fg=cyan>[dry-run]</> Would create: {$relative}");

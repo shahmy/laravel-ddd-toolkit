@@ -30,8 +30,8 @@ final class DddInitCommand extends Command
         NamespaceGenerator $namespaceGen,
     ): int {
         $dryRun  = (bool) $this->option('dry-run');
+        $srcPath = DomainGenerator::resolveSrcPath();
         $srcDir  = (string) config('ddd.src_directory', 'src');
-        $srcPath = base_path($srcDir);
         $files   = new Filesystem();
 
         $this->info('🚀 Initializing Laravel DDD project structure…');
@@ -67,7 +67,7 @@ final class DddInitCommand extends Command
             $created = $generator->generate($sharedDomain, $dryRun);
 
             foreach ($created as $path) {
-                $relative = str_replace(base_path() . '/', '', $path);
+                $relative = str_replace(base_path() . DIRECTORY_SEPARATOR, '', $path);
                 $prefix   = $dryRun ? '<fg=cyan>[dry-run]</> Would create:' : '<fg=green>✓</> Created:';
                 $this->line("  {$prefix} {$relative}");
             }

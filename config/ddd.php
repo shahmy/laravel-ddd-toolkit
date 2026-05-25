@@ -95,6 +95,7 @@ return [
             'Enums',
             'Events',
             'Exceptions',
+            'Policies',
             'Repositories',
             'Services',
             'Specifications',

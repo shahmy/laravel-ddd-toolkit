@@ -66,7 +66,7 @@ final class DddDomainCommand extends Command
         }
 
         foreach ($created as $path) {
-            $relative = str_replace(base_path() . '/', '', $path);
+            $relative = str_replace(base_path() . DIRECTORY_SEPARATOR, '', $path);
             $prefix   = $dryRun ? '<fg=cyan>[dry-run]</> Would create:' : '<fg=green>✓</> Created:';
             $this->line("  {$prefix} {$relative}");
         }

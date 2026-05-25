@@ -29,7 +29,7 @@ final class DddEnumCommand extends Command
 
         try {
             $path = $generator->generate('enum', $domain, 'Domain', 'Enums', $name, [], (bool) $this->option('force'), (bool) $this->option('dry-run'));
-            $relative = str_replace(base_path() . '/', '', $path);
+            $relative = str_replace(base_path() . DIRECTORY_SEPARATOR, '', $path);
             $this->line((bool) $this->option('dry-run') ? "<fg=cyan>[dry-run]</> Would create: {$relative}" : "<fg=green>✓</> Created: {$relative}");
             if (! (bool) $this->option('dry-run')) {
                 $this->info("✅ Enum '{$name}' created in {$domain}/Domain/Enums/");
